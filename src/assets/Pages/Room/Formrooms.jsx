@@ -59,20 +59,18 @@ export default function Formrooms() {
   };
 
   return (
-    <div className="relative max-w-4xl mx-auto mt-2 p-6 bg-gray-100 shadow-lg">
-      {/* ປຸ່ມຍ້ອນກັບ */}
-      <button
-        type="button"
-        onClick={() => navigate(-1)}
-        className="absolute top-4 left-4 text-xl flex items-center gap-2"
-      >
-        <IoMdArrowRoundBack className="text-3xl" />
-        <span>ຍ້ອນກັບ</span>
-      </button>
-      <br />
-      <br />
-      <h1 className="text-xl font-semibold">ເພີ່ມຫ້ອງ</h1>
-      <br />
+    <div className="w-full max-w-4xl mx-auto mt-2 p-6 bg-gray-100 shadow-lg rounded-lg">
+      {/* ปุ่มย้อนกลับ */}
+      <div className="flex justify-start mb-4">
+        <button
+          type="button"
+          onClick={() => navigate(-1)}
+          className="flex items-center gap-2 text-xl text-blue-600 hover:underline"
+        >
+          <IoMdArrowRoundBack className="text-3xl" />
+          <span>ເພີ່ມຫ້ອງ</span>
+        </button>
+      </div>
 
       <form onSubmit={handleSubmit} className="space-y-4">
         {/* ອັບໂຫລດຮູບພາບ */}
@@ -103,7 +101,7 @@ export default function Formrooms() {
         </div>
 
         {/* ຂໍ້ມູນຟອມ */}
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
             <label className="block font-semibold mb-1 text-lg">ເບີຫ້ອງ</label>
             <input
@@ -134,7 +132,7 @@ export default function Formrooms() {
           </div>
         </div>
 
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
             <label className="block font-semibold mb-1 text-lg">ຂະໜາດ</label>
             <input
@@ -158,7 +156,8 @@ export default function Formrooms() {
             />
           </div>
         </div>
-        <div className="grid grid-cols-2 gap-4">
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
             <label className="block font-semibold mb-1 text-lg">ຄ່າມັດຈຳ</label>
             <input
@@ -186,10 +185,10 @@ export default function Formrooms() {
             </select>
           </div>
         </div>
+
         <div>
           <label className="block font-semibold mb-1">ລາຍລະອຽດ :</label>
-          <input
-            type="text"
+          <textarea
             name="remark"
             value={formData.remark}
             onChange={handleChange}
@@ -197,8 +196,9 @@ export default function Formrooms() {
             required
           />
         </div>
-        <br />
-        <div className="text-center flex justify-center gap-4 mt-4">
+
+        {/* ปุ่ม */}
+        <div className="flex flex-wrap justify-center gap-4 mt-4">
           <button
             type="button"
             onClick={handleReset}
