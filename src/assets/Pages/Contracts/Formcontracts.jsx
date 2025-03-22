@@ -64,7 +64,7 @@ export default function Formcontracts() {
 
   return (
     <div className="relative max-w-4xl mx-auto mt-2 p-6 bg-gray-100 shadow-lg">
-      {/* ປຸ່ມຍ້ອນກັບ */}
+      {/* ปຸ່ມຍ້ອນກັບ */}
       <button
         type="button"
         onClick={() => navigate(-1)}
@@ -73,16 +73,13 @@ export default function Formcontracts() {
         <IoMdArrowRoundBack className="text-3xl" />
         <span>ຍ້ອນກັບ</span>
       </button>
-      <br />
-      <br />
-      <h1 className="text-xl font-semibold">ເພີ່ມສັນຍາ</h1>
-      <br />
+      <h1 className="text-xl font-semibold text-center mb-6">ເພີ່ມສັນຍາ</h1>
 
       <form onSubmit={handleSubmit} className="space-y-4">
         {/* ອັບໂຫລດຮູບພາບ */}
-        <div>
+        <div className="flex justify-center">
           <label htmlFor="imageUpload" className="cursor-pointer">
-            <div className="w-full h-40 rounded-2xl overflow-hidden border-4 border-gray-300 flex items-center justify-center relative">
+            <div className="w-full md:w-80 h-40 rounded-2xl overflow-hidden border-4 border-gray-300 flex items-center justify-center relative">
               {image ? (
                 <img
                   src={image}
@@ -107,7 +104,7 @@ export default function Formcontracts() {
         </div>
 
         {/* ຂໍ້ມູນຟອມ */}
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
             <label className="block font-semibold mb-1 text-lg">ເບີຫ້ອງ</label>
             <input
@@ -138,9 +135,9 @@ export default function Formcontracts() {
           </div>
         </div>
 
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
-            <label className="block font-semibold mb-1 text-lg">ຄ່າມັດຈຳ</label>
+            <label className="block font-semibold mb-1 text-lg">ວັນທີ</label>
             <input
               type="date"
               name="date"
@@ -151,7 +148,7 @@ export default function Formcontracts() {
             />
           </div>
           <div>
-            <label className="block font-semibold mb-1">ລາຍລະອຽດ :</label>
+            <label className="block font-semibold mb-1 text-lg">ລາຍລະອຽດ</label>
             <input
               type="text"
               name="remark"
@@ -162,8 +159,9 @@ export default function Formcontracts() {
             />
           </div>
         </div>
-        <br />
-        <div className="text-center flex justify-center gap-4 mt-4">
+
+        {/* ປຸ່ມ */}
+        <div className="text-center flex justify-center gap-6 mt-6">
           <button
             type="button"
             onClick={handleReset}

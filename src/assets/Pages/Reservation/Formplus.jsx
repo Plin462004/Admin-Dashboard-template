@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 export default function Formplus() {
   const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     room_number: "",
     floor: "",
@@ -112,7 +113,12 @@ export default function Formplus() {
               type: "select",
               options: ["", "1", "2", "3", "4", "5"],
             },
-            { label: "ຂະໜາດ", name: "size", type: "text" },
+            {
+              label: "ຂະໜາດຫ້ອງ",
+              name: "size",
+              type: "select",
+              options: ["", "8 X 5 CM", "10 X 5 CM", "12 X 8 CM"],
+            },
             { label: "ລາຄາ", name: "price", type: "number" },
             { label: "ຄ່າມັດຈຳ", name: "deposit", type: "number" },
             { label: "ຊື່ຜູ້ຈອງ", name: "r_name", type: "text" },
@@ -120,9 +126,7 @@ export default function Formplus() {
             { label: "ວັນທີຈອງ", name: "date", type: "date" },
           ].map(({ label, name, type, options }) => (
             <div key={name}>
-              <label className="block font-semibold mb-1 text-lg">
-                {label}
-              </label>
+              <label className="block font-semibold mb-1 text-lg">{label}</label>
               {type === "select" ? (
                 <select
                   name={name}
@@ -133,7 +137,7 @@ export default function Formplus() {
                 >
                   {options.map((option, idx) => (
                     <option key={idx} value={option}>
-                      {option || "ເລືອກຊັ້ນ"}
+                      {option || `ເລືອກ${label}`}
                     </option>
                   ))}
                 </select>

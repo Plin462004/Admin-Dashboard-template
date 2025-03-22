@@ -4,7 +4,7 @@ import { PiBuildingApartmentFill } from "react-icons/pi";
 import {
   FaHome,
   FaDoorOpen,
-  FaUserAlt,
+  FaUserCircle,
   FaUsers,
   FaFileSignature,
   FaCoins,
@@ -33,7 +33,7 @@ const menuItems = [
   { icon: <BiLogIn size={24} />, label: "Check-in", path: "/Check_in" },
   { icon: <BiLogOut size={24} />, label: "Check-out", path: "/Check_out" },
   { icon: <FaReadme size={24} />, label: "ການລາຍງານ", path: "/Reporst" },
-  { icon: <FaUserAlt size={20} />, label: "ຈັດການຜູ້ເຂົ້າໃຊ້", path: "/Users" },
+  { icon: <FaUserCircle size={20} />, label: "ຈັດການຜູ້ເຂົ້າໃຊ້", path: "/Users" },
 ];
 
 const Sidebar = ({ isOpen }) => {
@@ -47,7 +47,7 @@ const Sidebar = ({ isOpen }) => {
   return (
     <div
       className={`bg-gradient-to-r from-sky-500 to-teal-700 text-white h-screen p-3 transition-all duration-300 ease-in-out overflow-y-auto scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-300 ${
-        isOpen ? "w-72" : "w-18"
+        isOpen ? "w-72" : "w-20"
       } flex flex-col `}
     >
       <div>
@@ -61,7 +61,7 @@ const Sidebar = ({ isOpen }) => {
               <Link
                 to={item.path}
                 onClick={() => setActivePath(item.path)}
-                className={`flex items-center space-x-3 cursor-pointer text-xl rounded-3xl p-2 transition-all duration-200 
+                className={`flex items-center space-x-3 cursor-pointer text-xl rounded-3xl p-3 transition-all duration-200 
                   ${
                     activePath === item.path
                       ? "bg-white text-black"

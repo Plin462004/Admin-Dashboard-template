@@ -33,7 +33,7 @@ const Content = () => {
   return (
     <div>
       <div
-        className="bg-cover bg-center bg-no-repeat text-white rounded-lg"
+        className="bg-cover bg-center bg-no-repeat text-white rounded-xl"
         style={{ backgroundImage: "url('src/assets/img/D.jpg')" }}
       >
         <div className="p-6">
@@ -95,7 +95,7 @@ const Content = () => {
 
 const Card = ({ icon, title, value, borderColor }) => (
   <div
-    className={`bg-gray-100 p-12 shadow-xl rounded-lg flex items-center border hover:border-${borderColor}`}
+    className={`bg-gray-100 p-12 shadow-xl rounded-xl flex items-center border hover:border-${borderColor}`}
   >
     {icon}
     <div className="ml-6">
