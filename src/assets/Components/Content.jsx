@@ -9,7 +9,7 @@ const Content = () => {
         className="bg-cover bg-center bg-no-repeat text-white rounded-xl"
         style={{ backgroundImage: "url('src/assets/img/D.jpg')" }}
       >
-        <div className="p-6">
+        <div className="p-4">
           <h1 className="text-white font-bold text-2xl">Hello, Soulin</h1>
           <p className="text-white text-xl">
             ສະບາຍດີ, ຍິນດີຕ້ອນຮັບເຂົ້າສູ່ລະບົບ ບໍລິຫານ APARTMENT

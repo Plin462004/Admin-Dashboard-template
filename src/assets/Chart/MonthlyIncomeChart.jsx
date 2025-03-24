@@ -36,7 +36,7 @@ const MonthlyIncomeChart = () => {
           <YAxis />
           <Tooltip />
           <Legend />
-          <Bar dataKey="income" fill="#4868fc" name="รายได้" barSize={40} />
+          <Bar dataKey="income" fill="#4868fc" name="รายได้" barSize={20} />
         </BarChart>
       </ResponsiveContainer>
     </div>
