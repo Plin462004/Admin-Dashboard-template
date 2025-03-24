@@ -3,7 +3,6 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { CssBaseline } from "@mui/material";
 import HeaderBar from "./assets/Components/HeaderBar";
 import Sidebar from "./assets/Components/Sidebar";
-import Content from "./assets/Components/Dashboard";
 import Room from "./assets/Pages/Room/RoomReport";
 import Reservation from "./assets/Pages/Reservation/Reservation";
 import Contracts from "./assets/Pages/Contracts/Contracts";
@@ -17,6 +16,7 @@ import Users from "./assets/Pages/Users/Users";
 import Formrooms from "./assets/Pages/Room/Formrooms";
 import Formplus from "./assets/Pages/Reservation/Formplus";
 import Formcontracts from "./assets/Pages/Contracts/Formcontracts";
+import Dasboard from "./assets/Dashboard/Dasboard";
 
 const App = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(
@@ -51,7 +51,7 @@ const App = () => {
           {/* Page Content */}
           <div className="p-4 flex-grow overflow-y-auto h-full">
             <Routes>
-              <Route path="/" element={<Content />} />
+              <Route path="/" element={<Dasboard />} />
               <Route path="/Room" element={<Room />} />
               <Route path="/Reservation" element={<Reservation />} />
               <Route path="/Contracts" element={<Contracts />} />

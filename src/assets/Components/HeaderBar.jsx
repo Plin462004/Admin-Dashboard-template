@@ -2,17 +2,19 @@ import React, { useState, useEffect, useRef } from "react";
 import { BiLogOut } from "react-icons/bi";
 import { IoSettingsSharp } from "react-icons/io5";
 import { FiMenu, FiBell, FiSearch } from "react-icons/fi";
-import linImage from "/src/assets/img/Lin4.jpg"; // import ຮູບພາບມາ
+import { useNavigate } from "react-router-dom"; // Import useNavigate
+import linImage from "/src/assets/img/Lin4.jpg";
 
 const HeaderBar = ({ toggleSidebar }) => {
   const [searchQuery, setSearchQuery] = useState("");
   const [profileMenuOpen, setProfileMenuOpen] = useState(false);
   const [searchVisible, setSearchVisible] = useState(false);
   const [notificationOpen, setNotificationOpen] = useState(false);
-  const [currentDateTime, setCurrentDateTime] = useState(""); // สร้าง state สำหรับเก็บวันที่และเวลา
 
   const profileMenuRef = useRef(null);
   const notificationMenuRef = useRef(null);
+
+  const navigate = useNavigate(); // ใช้ useNavigate สำหรับการนำทาง
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -38,24 +40,27 @@ const HeaderBar = ({ toggleSidebar }) => {
   const toggleSearchBar = () => setSearchVisible(!searchVisible);
   const toggleNotificationMenu = () => setNotificationOpen(!notificationOpen);
 
-  const handleSearchChange = (e) => {
-    setSearchQuery(e.target.value);
+  const handleSearchChange = (e) => setSearchQuery(e.target.value);
+
+  // ฟังก์ชันนำทางไปยังหน้า Login
+  const handleLogout = () => {
+    navigate("/login"); // นำทางไปยัง URL "/login"
   };
 
   return (
     <div className="bg-gray-100 shadow-md px-2 py-3 flex justify-between items-center">
-      {/* ປຸ່ມເປີດ/ປິດ Sidebar */}
+      {/* Sidebar Toggle Button */}
       <button
         onClick={toggleSidebar}
-        className=" text-teal-600 font-semibold hover:bg-gray-300 p-2 hover:rounded-3xl"
+        className="text-teal-600 font-semibold hover:bg-gray-300 p-2 hover:rounded-3xl"
         aria-label="Toggle Sidebar"
       >
         <FiMenu size={26} />
       </button>
 
-      {/* Icons ເບື່ອງຂວາ */}
+      {/* Right-Side Icons */}
       <div className="flex items-center space-x-4">
-        {/*ປຸ່ມຄົ້ນຫາ*/}
+        {/* Search Button */}
         <button
           onClick={toggleSearchBar}
           className="p-2 text-gray-600 hover:text-black transition"
@@ -64,7 +69,7 @@ const HeaderBar = ({ toggleSidebar }) => {
           <FiSearch size={22} />
         </button>
 
-        {/* ເເຖບຄົ້ນຫາ (ສະເເດງຕາມການເປີດປິດໃຊ້ງານ) */}
+        {/* Search Bar */}
         {searchVisible && (
           <input
             type="text"
@@ -76,10 +81,7 @@ const HeaderBar = ({ toggleSidebar }) => {
           />
         )}
 
-        {/* แสดงวันที่และเวลา */}
-        <div className="text-white text-sm ml-4">{currentDateTime}</div>
-
-        {/* ປຸ່ມການເເຈ້ງເຕືອນ */}
+        {/* Notification Button */}
         <div className="relative">
           <button
             onClick={toggleNotificationMenu}
@@ -92,11 +94,11 @@ const HeaderBar = ({ toggleSidebar }) => {
             </span>
           </button>
 
-          {/* ເມນູການເເຈ້ງເຕືອນ */}
+          {/* Notification Menu */}
           {notificationOpen && (
             <div
               ref={notificationMenuRef}
-              className="absolute right-0 mt-4 bg-gray-200 shadow-lg rounded-lg w-72 py-2 "
+              className="absolute right-0 mt-4 bg-gray-200 shadow-lg rounded-lg w-72 py-2"
             >
               <div className="px-4 py-2 text-center text-xl text-black font-semibold border-b">
                 ການເເຈ້ງເຕືອນ 🔔
@@ -119,7 +121,7 @@ const HeaderBar = ({ toggleSidebar }) => {
           )}
         </div>
 
-        {/* ໂປຮຟາຍ (ໃຊ້ຮູບເເທນ Icons) */}
+        {/* Profile Menu */}
         <div className="relative">
           <button
             className="flex items-center space-x-2 focus:outline-none"
@@ -127,13 +129,13 @@ const HeaderBar = ({ toggleSidebar }) => {
             aria-label="Profile Menu"
           >
             <img
-              src={linImage} // ໃຊ້ຕົວເເປ linImage ທີ່ import ຮູບພາບມາ
+              src={linImage}
               alt="Profile"
               className="w-9 h-9 rounded-full border-2 border-gray-300"
             />
           </button>
 
-          {/* ເມນູໂປຮຟາຍ */}
+          {/* Profile Menu Dropdown */}
           {profileMenuOpen && (
             <div
               ref={profileMenuRef}
@@ -146,7 +148,10 @@ const HeaderBar = ({ toggleSidebar }) => {
                 <IoSettingsSharp size={22} />
                 &nbsp; ຕັ້ງຄ່າ
               </button>
-              <button className="flex w-full text-left px-4 py-2 text-red-600 hover:bg-gray-100 transition">
+              <button
+                onClick={handleLogout} // เรียกใช้ฟังก์ชัน Logout
+                className="flex w-full text-left px-4 py-2 text-red-600 hover:bg-gray-100 transition"
+              >
                 <BiLogOut size={22} />
                 &nbsp; ອອກຈາກລະບົບ
               </button>

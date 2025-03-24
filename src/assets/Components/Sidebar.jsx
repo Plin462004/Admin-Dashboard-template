@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { PiBuildingApartmentFill } from "react-icons/pi";
 import {
-  FaHome,
   FaDoorOpen,
   FaUserCircle,
   FaUsers,
@@ -13,9 +12,10 @@ import {
 } from "react-icons/fa";
 import { BiLogIn, BiLogOut } from "react-icons/bi";
 import { IoIosBed } from "react-icons/io";
+import { RxDashboard } from "react-icons/rx";
 
 const menuItems = [
-  { icon: <FaHome size={24} />, label: "ໜ້າຫຼັກ", path: "/" },
+  { icon: <RxDashboard size={24} />, label: "Dashboard", path: "/" },
   { icon: <IoIosBed size={24} />, label: "ຈັດການຫ້ອງ", path: "/Room" },
   { icon: <FaDoorOpen size={24} />, label: "ຈັດການຈອງ", path: "/Reservation" },
   {
