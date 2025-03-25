@@ -1,6 +1,6 @@
 import React from "react";
 import {
-  LineChart,
+  LineChart as RechartsLineChart, // เปลี่ยนชื่อ import
   Line,
   XAxis,
   YAxis,
@@ -21,12 +21,12 @@ const data = [
   { name: "Jul", uv: 3490, pv: 4300, amt: 2100 },
 ];
 
-const CustomLineChart = () => {
+const LineChart = () => { // เปลี่ยนชื่อฟังก์ชัน
   return (
     <div className="w-full h-[400px]">
       <h2 className="text-xl font-bold text-center mb-4">รายได้ต่อเดือน</h2>
       <ResponsiveContainer width="100%" height="100%">
-        <LineChart
+        <RechartsLineChart
           data={data}
           margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
         >
@@ -52,10 +52,10 @@ const CustomLineChart = () => {
             dot={{ fill: "#82ca9d", strokeWidth: 2 }}
           />
           <Brush />
-        </LineChart>
+        </RechartsLineChart>
       </ResponsiveContainer>
     </div>
   );
 };
 
-export default CustomLineChart;
+export default LineChart;

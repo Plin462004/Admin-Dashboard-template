@@ -1,4 +1,5 @@
 import React from 'react';
+import MDImage from "/src/assets/img/MD.jpg";
 
 const Login = () => {
   return (
@@ -55,22 +56,22 @@ const Login = () => {
       <div className="w-1/2 flex items-center justify-center bg-blue-100">
         <div className="grid grid-cols-2 gap-4 p-6">
           <img
-            src="https://via.placeholder.com/150"
+            src={MDImage}
             alt="Placeholder 1"
             className="rounded-lg shadow-md"
           />
           <img
-            src="https://via.placeholder.com/150"
+            src={MDImage}
             alt="Placeholder 2"
             className="rounded-lg shadow-md"
           />
           <img
-            src="https://via.placeholder.com/150"
+            src={MDImage}
             alt="Placeholder 3"
             className="rounded-lg shadow-md"
           />
           <img
-            src="https://via.placeholder.com/150"
+            src={MDImage}
             alt="Placeholder 4"
             className="rounded-lg shadow-md"
           />

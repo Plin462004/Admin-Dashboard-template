@@ -11,23 +11,23 @@ import {
 } from "recharts";
 
 const data = [
-  { month: "Jan", income: 12000 },
-  { month: "Feb", income: 15000 },
-  { month: "Mar", income: 18000 },
-  { month: "Apr", income: 17000 },
-  { month: "May", income: 20000 },
-  { month: "Jun", income: 22000 },
-  { month: "Jul", income: 25000 },
-  { month: "Aug", income: 24000 },
-  { month: "Sep", income: 23000 },
-  { month: "Oct", income: 26000 },
-  { month: "Nov", income: 28000 },
-  { month: "Dec", income: 30000 },
+  { month: "ມັງກອນ", income: 12000 },
+  { month: "ກຸມພາ", income: 15000 },
+  { month: "ມີນາ", income: 18000 },
+  { month: "ເມສາ", income: 17000 },
+  { month: "ພຶດສະພາ", income: 20000 },
+  { month: "ມີຖຸນາ", income: 22000 },
+  { month: "ກໍລະກົດ", income: 25000 },
+  { month: "ສິງຫາ", income: 24000 },
+  { month: "ກັນຍາ", income: 23000 },
+  { month: "ຕຸລາ", income: 26000 },
+  { month: "ພະຈິກ", income: 28000 },
+  { month: "ທັນວາ", income: 30000 },
 ];
 
 const MonthlyIncomeChart = () => {
   return (
-    <div className="w-full h-[400px]">
+    <div className="w-full h-[460px]">
       <h2 className="text-xl font-bold text-center mb-4">ລາຍໄດ້ເເຕ່ລະເດືອນ</h2>
       <ResponsiveContainer width="100%" height="100%">
         <BarChart data={data} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
@@ -36,7 +36,7 @@ const MonthlyIncomeChart = () => {
           <YAxis />
           <Tooltip />
           <Legend />
-          <Bar dataKey="income" fill="#4868fc" name="รายได้" barSize={20} />
+          <Bar dataKey="income" fill="#4868fc" name="  ລາຍໄດ້" barSize={22} />
         </BarChart>
       </ResponsiveContainer>
     </div>
