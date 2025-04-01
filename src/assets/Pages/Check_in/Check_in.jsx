@@ -52,7 +52,7 @@ export default function Check_in() {
   };
 
   return (
-    <div className="max-w-4xl mx-auto mt-2 p-6 bg-gray-100 shadow-lg">
+    <div className="max-w-4xl mx-auto mt-2 p-6 rounded-lg bg-gray-100 shadow-lg">
   <h1 className="text-2xl font-semibold">Check_in</h1><br /><br />
        
       <form onSubmit={handleSubmit} className="space-y-4">

@@ -27,16 +27,16 @@ const data = [
 
 const MonthlyIncomeChart = () => {
   return (
-    <div className="w-full h-[460px]">
-      <h2 className="text-xl font-bold text-center mb-4">ລາຍໄດ້ເເຕ່ລະເດືອນ</h2>
+    <div className="w-full h-[300px]">
+      <h2 className="text-lg font-bold text-center mb-3">ລາຍໄດ້ເເຕ່ລະເດືອນ</h2>
       <ResponsiveContainer width="100%" height="100%">
-        <BarChart data={data} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
+        <BarChart data={data} margin={{ top: 10, right: 20, left: 10, bottom: 5 }}>
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis dataKey="month" />
           <YAxis />
           <Tooltip />
           <Legend />
-          <Bar dataKey="income" fill="#4868fc" name="  ລາຍໄດ້" barSize={22} />
+          <Bar dataKey="income" fill="#4868fc" name="ລາຍໄດ້" barSize={18} />
         </BarChart>
       </ResponsiveContainer>
     </div>

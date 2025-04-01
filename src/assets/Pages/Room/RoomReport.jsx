@@ -153,7 +153,7 @@ const Check_in = () => {
   };
 
   return (
-    <div className="w-full min-h-screen p-4 md:p-6 bg-gray-100">
+    <div className="w-full min-h-screen rounded-lg p-4 md:p-6 bg-gray-100">
       <h2 className="text-2xl font-bold mb-4">ຈັດການຫ້ອງ</h2>
       <div className="relative">
         <div className="flex gap-2 mb-4 border-b-2 border-gray-300 text-xl relative">
@@ -180,7 +180,7 @@ const Check_in = () => {
           placeholder="ຄົ້ນຫາ..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          className="border px-4 py-2 rounded-l-xl flex-grow h-10 border-gray-400"
+          className="border px-4 py-2 rounded-l-xl flex-grow h-10 border-gray-200"
         />
         <button className="bg-sky-600 text-white px-4 py-2 rounded-r-xl h-10">
           <FiSearch />

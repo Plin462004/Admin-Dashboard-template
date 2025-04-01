@@ -16,7 +16,7 @@ const Content = () => {
           </p>
         </div>
 
-        <div className="p-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-2xl">
+        <div className="p-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-2xl">
           <Card
             icon={
               <FaUsers className="text-5xl text-blue-600 hover:border-blue-600" />

@@ -11,8 +11,8 @@ import Payments from "./assets/Pages/Payments/Payments";
 import Debts from "./assets/Pages/Debts/Debts";
 import Check_in from "./assets/Pages/Check_in/Check_in";
 import Check_out from "./assets/Pages/Check_out/Check_out";
-import Reports from "./assets/Pages/Reporst/Reporst";
-import UserTable from "./assets/Pages/Users/UserTable";
+import Reports from "./assets/Pages/Reports/Reports";
+import Table from "./assets/Pages/Users/Table";
 import Formrooms from "./assets/Pages/Room/Formrooms";
 import Formplus from "./assets/Pages/Reservation/Formplus";
 import Formcontracts from "./assets/Pages/Contracts/Formcontracts";
@@ -61,7 +61,7 @@ const App = () => {
               <Route path="/Check_in" element={<Check_in />} />
               <Route path="/Check_out" element={<Check_out />} />
               <Route path="/Reports" element={<Reports />} />
-              <Route path="/UserTable" element={<UserTable />} />
+              <Route path="/Table" element={<Table />} />
               <Route path="/formrooms" element={<Formrooms />} />
               <Route path="/Formplus" element={<Formplus />} />
               <Route path="/Formcontracts" element={<Formcontracts />} />

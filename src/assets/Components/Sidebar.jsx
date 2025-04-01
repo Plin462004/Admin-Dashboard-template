@@ -32,11 +32,11 @@ const menuItems = [
   { icon: <FaCoins size={24} />, label: "ການຕິດໜີ້", path: "/Debts" },
   { icon: <BiLogIn size={24} />, label: "Check-in", path: "/Check_in" },
   { icon: <BiLogOut size={24} />, label: "Check-out", path: "/Check_out" },
-  { icon: <FaReadme size={24} />, label: "ການລາຍງານ", path: "/Reporst" },
+  { icon: <FaReadme size={24} />, label: "ການລາຍງານ", path: "/Reports" },
   {
     icon: <FaUserAlt size={20} />,
     label: "ຈັດການຜູ້ເຂົ້າໃຊ້",
-    path: "/UserTable",
+    path: "/Table",
   },
 ];
 

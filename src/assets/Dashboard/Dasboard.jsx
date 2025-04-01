@@ -3,7 +3,7 @@ import Content from "../Components/Content";
 import MonthlyIncomeChart from "../Chart/MonthlyIncomeChart";
 import CustomDonutChart from "../Chart/CustomDonutChart";
 import LineChart from "../Chart/LineChart";
-import TableUser from "../Pages/Users/UserTable";
+import Table from "../Pages/Users/Table";
 
 const Dashboard = () => {
   return (
@@ -11,20 +11,19 @@ const Dashboard = () => {
       {/* Summary Cards Row */}
       <div className="grid grid-cols-1 gap-1 ">
         <Content />
-      </div>
-      <br />
+      </div>&nbsp;
 
       {/* Main Content Row */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-4 h-90">
         {/* Left Column */}
         <div className="bg-white rounded-xl shadow p-4 sm:col-span-2 lg:col-span-4">
-          Chart 1
+        CustomDonutChart
           <CustomDonutChart />
         </div>
 
         {/* Right Column */}
         <div className="bg-white rounded-xl shadow p-4 sm:col-span-2 lg:col-span-8">
-          Chart 2
+        MonthlyIncomeChart
           <MonthlyIncomeChart />
         </div>
       </div>
@@ -35,8 +34,8 @@ const Dashboard = () => {
         <LineChart />
       </div>
       <div className="mt-4 bg-white rounded-xl shadow p-4">
-        Table 
-        <TableUser/>
+        Table User
+        <Table/>
       </div>
     </div>
   );
