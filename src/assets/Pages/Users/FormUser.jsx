@@ -7,15 +7,13 @@ export default function Formplus() {
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
-    room_number: "",
-    floor: "",
-    size: "",
-    price: "",
-    deposit: "",
-    r_name: "",
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+    status: "",
     tel: "",
-    date: "",
-    remark: "",
   });
 
   const [image, setImage] = useState(null);
@@ -47,15 +45,13 @@ export default function Formplus() {
   const handleReset = () => {
     if (window.confirm("ທ່ານແນ່ໃຈບໍ່ວ່າຈະລົບຂໍ້ມູນທັງໝົດ?")) {
       setFormData({
-        room_number: "",
-        floor: "",
-        size: "",
-        price: "",
-        deposit: "",
-        r_name: "",
+        firstName: "",
+        lastName: "",
+        email: "",
+        password: "",
+        confirmPassword: "",
+        status: "",
         tel: "",
-        date: "",
-        remark: "",
       });
       setImage(null);
     }
@@ -187,3 +183,7 @@ export default function Formplus() {
     </div>
   );
 }
+
+
+
+

@@ -11,8 +11,8 @@ import Payments from "./assets/Pages/Payments/Payments";
 import Debts from "./assets/Pages/Debts/Debts";
 import Check_in from "./assets/Pages/Check_in/Check_in";
 import Check_out from "./assets/Pages/Check_out/Check_out";
-import Reports from "./assets/Pages/Reporst/Reporst"; // ✅ แก้ชื่อจาก Reporst → Reports
-import Users from "./assets/Pages/Users/Users";
+import Reports from "./assets/Pages/Reporst/Reporst";
+import UserTable from "./assets/Pages/Users/UserTable";
 import Formrooms from "./assets/Pages/Room/Formrooms";
 import Formplus from "./assets/Pages/Reservation/Formplus";
 import Formcontracts from "./assets/Pages/Contracts/Formcontracts";
@@ -61,11 +61,11 @@ const App = () => {
               <Route path="/Check_in" element={<Check_in />} />
               <Route path="/Check_out" element={<Check_out />} />
               <Route path="/Reports" element={<Reports />} />
-              <Route path="/Users" element={<Users />} />
+              <Route path="/UserTable" element={<UserTable />} />
               <Route path="/formrooms" element={<Formrooms />} />
               <Route path="/Formplus" element={<Formplus />} />
               <Route path="/Formcontracts" element={<Formcontracts />} />
-            </Routes>
+              </Routes>
           </div>
         </div>
       </div>

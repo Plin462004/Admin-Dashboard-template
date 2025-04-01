@@ -3,6 +3,7 @@ import Content from "../Components/Content";
 import MonthlyIncomeChart from "../Chart/MonthlyIncomeChart";
 import CustomDonutChart from "../Chart/CustomDonutChart";
 import LineChart from "../Chart/LineChart";
+import TableUser from "../Pages/Users/UserTable";
 
 const Dashboard = () => {
   return (
@@ -34,7 +35,8 @@ const Dashboard = () => {
         <LineChart />
       </div>
       <div className="mt-4 bg-white rounded-xl shadow p-4">
-        Additional Statistics or Full-width Chart
+        Table 
+        <TableUser/>
       </div>
     </div>
   );

@@ -36,7 +36,7 @@ const menuItems = [
   {
     icon: <FaUserAlt size={20} />,
     label: "ຈັດການຜູ້ເຂົ້າໃຊ້",
-    path: "/Users",
+    path: "/UserTable",
   },
 ];
 
