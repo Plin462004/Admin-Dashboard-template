@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
-import { PiBuildingApartmentFill } from "react-icons/pi";
+import Logo from "../img/OIP.jpeg";
 import {
   FaDoorOpen,
   FaUserAlt,
@@ -40,7 +40,7 @@ const menuItems = [
   },
 ];
 
-const Sidebar = ({ isOpen }) => {
+const Sidebar = ({ isOpen, isMobileView }) => {
   const [activePath, setActivePath] = useState("/");
   const location = useLocation();
 
@@ -50,12 +50,19 @@ const Sidebar = ({ isOpen }) => {
 
   return (
     <div
-      className={`bg-gradient-to-r from-sky-500 to-teal-700 text-white h-screen p-4 transition-all duration-300 ease-in-out overflow-y-auto scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-300 ${isOpen ? "w-72" : "w-20"} flex flex-col`}
+      className={`bg-gradient-to-r from-sky-500 to-teal-700 text-white h-screen p-4 transition-all duration-300 ease-in-out overflow-y-auto scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-300 ${
+        isOpen ? "w-72" : "w-20"
+      } flex flex-col`}
     >
+      <div className="text-center">
+        {isOpen ? (
+          <h1 className="text-2xl font-bold">APARTMENT</h1>
+        ) : (
+          <img src={Logo} alt="Logo" className="w-10 mx-auto" />
+        )}
+      </div>
+
       <div>
-        <h1 className="text-2xl font-bold text-center">
-          {isOpen ? "APARTMENT" : <PiBuildingApartmentFill size={24} />}
-        </h1>
         <hr className="my-5 border-white" />
         <ul className="space-y-2 flex-grow">
           {menuItems.map((item, index) => (
@@ -63,15 +70,16 @@ const Sidebar = ({ isOpen }) => {
               <Link
                 to={item.path}
                 onClick={() => setActivePath(item.path)}
-                className={`flex items-center space-x-3 cursor-pointer text-xl rounded-3xl p-2 transition-all duration-200 
-    ${
-      activePath === item.path
-        ? "bg-white text-black"
-        : "hover:bg-white hover:text-blue-700"
-    }`}
+                className={`flex items-center space-x-3 cursor-pointer text-xl rounded-3xl p-2 transition-all duration-200 ${
+                  activePath === item.path
+                    ? "bg-white text-black"
+                    : "hover:bg-white hover:text-blue-700"
+                }`}
               >
                 {item.icon}
-                <span className={isOpen ? "block" : "hidden"}>{item.label}</span>
+                <span className={isOpen ? "block" : "hidden"}>
+                  {item.label}
+                </span>
               </Link>
             </li>
           ))}

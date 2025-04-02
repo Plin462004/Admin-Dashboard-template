@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { CssBaseline } from "@mui/material";
 import HeaderBar from "./assets/Components/HeaderBar";
@@ -19,34 +19,103 @@ import Formcontracts from "./assets/Pages/Contracts/Formcontracts";
 import Dasboard from "./assets/Dashboard/Dasboard";
 
 const App = () => {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(
-    localStorage.getItem("sidebarState") === "true" // ดึงค่าจาก localStorage
-  );
+  // เพิ่ม state สำหรับตรวจจับขนาดหน้าจอ
+  const [isMobileView, setIsMobileView] = useState(false);
+  
+  // ปรับการตั้งค่าเริ่มต้นของ sidebar
+  const [isSidebarOpen, setIsSidebarOpen] = useState(() => {
+    // เช็คขนาดหน้าจอตอนโหลดครั้งแรก
+    const isMobile = window.innerWidth < 768;
+    
+    // ถ้าเป็นหน้าจอมือถือ เริ่มต้นด้วย sidebar ที่ปิด, มิฉะนั้นใช้ค่าจาก localStorage
+    if (isMobile) {
+      return false;
+    } else {
+      return localStorage.getItem("sidebarState") === "true" || 
+             localStorage.getItem("sidebarState") === null; // default to true if not set
+    }
+  });
+
+  // ตรวจจับการเปลี่ยนแปลงขนาดหน้าจอ
+  useEffect(() => {
+    const checkScreenSize = () => {
+      const isMobile = window.innerWidth < 768;
+      setIsMobileView(isMobile);
+      
+      // ปรับแค่เมื่อเปลี่ยนจากหน้าจอใหญ่เป็นหน้าจอเล็ก
+      if (isMobile && !isMobileView) {
+        setIsSidebarOpen(false);
+      }
+    };
+    
+    // ตรวจสอบตอนเริ่มต้น
+    checkScreenSize();
+    
+    // ตรวจสอบเมื่อขนาดหน้าจอเปลี่ยน
+    window.addEventListener("resize", checkScreenSize);
+    
+    // Cleanup
+    return () => window.removeEventListener("resize", checkScreenSize);
+  }, [isMobileView]);
+
+  // เพิ่ม overlay สำหรับ mobile view เมื่อ sidebar เปิด
+  const [showOverlay, setShowOverlay] = useState(false);
+
+  useEffect(() => {
+    // แสดง overlay เมื่อ sidebar เปิดใน mobile view
+    setShowOverlay(isMobileView && isSidebarOpen);
+  }, [isMobileView, isSidebarOpen]);
 
   const toggleSidebar = () => {
     const newState = !isSidebarOpen;
     setIsSidebarOpen(newState);
-    localStorage.setItem("sidebarState", newState); // บันทึกค่าใหม่
+    
+    // บันทึกสถานะลง localStorage เฉพาะเมื่อไม่ใช่หน้าจอมือถือ
+    if (!isMobileView) {
+      localStorage.setItem("sidebarState", newState);
+    }
+  };
+
+  // เพิ่มฟังก์ชั่นสำหรับการปิด sidebar เมื่อคลิก overlay
+  const closeSidebar = () => {
+    if (isMobileView) {
+      setIsSidebarOpen(false);
+    }
   };
 
   return (
     <BrowserRouter>
       <CssBaseline />
       <div className="flex h-screen">
+        {/* Overlay เมื่อ sidebar เปิดใน mobile mode */}
+        {showOverlay && (
+          <div 
+            className="fixed inset-0 bg-black bg-opacity-50 z-40"
+            onClick={closeSidebar}
+          />
+        )}
+
         {/* Sidebar */}
-        <Sidebar
-          isOpen={isSidebarOpen}
-          className="h-screen fixed z-50 bg-white shadow-md"
-        />
+        <div 
+          className={`fixed h-screen z-50 transition-all duration-300 ${
+            isMobileView 
+              ? `transform ${isSidebarOpen ? "translate-x-0" : "-translate-x-full"} w-72` 
+              : `${isSidebarOpen ? "w-72" : "w-20"}`
+          }`}
+        >
+          <Sidebar isOpen={isSidebarOpen} isMobileView={isMobileView} />
+        </div>
 
         {/* Main Content */}
-        <div
+        <div 
           className={`flex flex-col flex-grow transition-all duration-300 ${
-            isSidebarOpen ? "w-72" : "w-18"
-          } w-full overflow-hidden`}
+            isMobileView 
+              ? "w-full" 
+              : `${isSidebarOpen ? "ml-72" : "ml-20"} w-full`
+          }`}
         >
           {/* Header */}
-          <HeaderBar toggleSidebar={toggleSidebar} />
+          <HeaderBar toggleSidebar={toggleSidebar} isSidebarOpen={isSidebarOpen} />
 
           {/* Page Content */}
           <div className="p-4 flex-grow overflow-y-auto h-full">
@@ -65,7 +134,7 @@ const App = () => {
               <Route path="/formrooms" element={<Formrooms />} />
               <Route path="/Formplus" element={<Formplus />} />
               <Route path="/Formcontracts" element={<Formcontracts />} />
-              </Routes>
+            </Routes>
           </div>
         </div>
       </div>

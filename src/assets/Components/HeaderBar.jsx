@@ -5,7 +5,7 @@ import { FiMenu, FiBell, FiSearch } from "react-icons/fi";
 import { useNavigate } from "react-router-dom"; // Import useNavigate
 import linImage from "/src/assets/img/Lin4.jpg";
 
-const HeaderBar = ({ toggleSidebar }) => {
+const HeaderBar = ({ toggleSidebar, isSidebarOpen }) => {
   const [searchQuery, setSearchQuery] = useState("");
   const [profileMenuOpen, setProfileMenuOpen] = useState(false);
   const [searchVisible, setSearchVisible] = useState(false);
@@ -52,10 +52,13 @@ const HeaderBar = ({ toggleSidebar }) => {
       {/* Sidebar Toggle Button */}
       <button
         onClick={toggleSidebar}
-        className="text-teal-600 font-semibold hover:bg-gray-300 p-2 hover:rounded-3xl"
+        className="text-teal-600 font-semibold hover:bg-gray-300 p-2 hover:rounded-3xl transition-all duration-300"
         aria-label="Toggle Sidebar"
       >
-        <FiMenu size={26} />
+        <FiMenu 
+          size={26} 
+          className={`transition-transform duration-300 ${isSidebarOpen ? "rotate-90" : "rotate-0"}`}
+        />
       </button>
 
       {/* Right-Side Icons */}
@@ -98,7 +101,7 @@ const HeaderBar = ({ toggleSidebar }) => {
           {notificationOpen && (
             <div
               ref={notificationMenuRef}
-              className="absolute right-0 mt-4 bg-gray-200 shadow-lg rounded-lg w-72 py-2"
+              className="absolute right-0 mt-4 bg-gray-200 shadow-lg rounded-lg w-72 py-2 z-50"
             >
               <div className="px-4 py-2 text-center text-xl text-black font-semibold border-b">
                 ການເເຈ້ງເຕືອນ 🔔
@@ -139,7 +142,7 @@ const HeaderBar = ({ toggleSidebar }) => {
           {profileMenuOpen && (
             <div
               ref={profileMenuRef}
-              className="text-xl text-black bg-gray-200 absolute right-3 mt-4 shadow-lg rounded-lg w-60 py-2"
+              className="text-xl text-black bg-gray-200 absolute right-3 mt-4 shadow-lg rounded-lg w-60 py-2 z-50"
             >
               <button className="block w-full text-left px-4 py-2 text-gray-800 hover:bg-gray-100 transition">
                 ໂປຣຟາຍ
