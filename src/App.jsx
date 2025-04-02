@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { CssBaseline } from "@mui/material";
-import HeaderBar from "./assets/Components/HeaderBar";
-import Sidebar from "./assets/Components/Sidebar";
+import HeaderBar from "./assets/Components/Header/HeaderBar";
+import Sidebar from "./assets/Components/Sidebar/Sidebar";
 import Room from "./assets/Pages/Room/RoomReport";
 import Reservation from "./assets/Pages/Reservation/Reservation";
 import Contracts from "./assets/Pages/Contracts/Contracts";
@@ -17,6 +17,7 @@ import Formrooms from "./assets/Pages/Room/Formrooms";
 import Formplus from "./assets/Pages/Reservation/Formplus";
 import Formcontracts from "./assets/Pages/Contracts/Formcontracts";
 import Dasboard from "./assets/Dashboard/Dasboard";
+import Login from "./assets/Auth/Login";
 
 const App = () => {
   // เพิ่ม state สำหรับตรวจจับขนาดหน้าจอ
@@ -134,6 +135,7 @@ const App = () => {
               <Route path="/formrooms" element={<Formrooms />} />
               <Route path="/Formplus" element={<Formplus />} />
               <Route path="/Formcontracts" element={<Formcontracts />} />
+              <Route path="/Login" element={<Login />} />
             </Routes>
           </div>
         </div>

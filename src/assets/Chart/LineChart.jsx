@@ -12,19 +12,24 @@ import {
 } from "recharts";
 
 const data = [
-  { name: "Jan", uv: 4000, pv: 2400, amt: 2400 },
-  { name: "Feb", uv: 3000, pv: 1398, amt: 2210 },
-  { name: "Mar", uv: 2000, pv: 9800, amt: 2290 },
-  { name: "Apr", uv: 2780, pv: 3908, amt: 2000 },
-  { name: "May", uv: 1890, pv: 4800, amt: 2181 },
-  { name: "Jun", uv: 2390, pv: 3800, amt: 2500 },
-  { name: "Jul", uv: 3490, pv: 4300, amt: 2100 },
+  { name: "ມັງກອນ", uv: 4000, pv: 2400, amt: 2400 },
+  { name: "ກຸມພາ", uv: 3000, pv: 1398, amt: 2210 },
+  { name: "ມີນາ", uv: 2000, pv: 9800, amt: 2290 },
+  { name: "ເມສາ", uv: 2780, pv: 3908, amt: 2000 },
+  { name: "ພຶດສະພາ", uv: 1890, pv: 4800, amt: 2181 },
+  { name: "ມີຖຸນາ", uv: 1390, pv: 3800, amt: 2500 },
+  { name: "ກໍລະກົດ", uv: 3490, pv: 8300, amt: 2100 },
+  { name: "ສິງຫາ", uv: 3490, pv: 4300, amt: 2100 },
+  { name: "ກັນຍາ", uv: 6490, pv: 4300, amt: 2100 },
+  { name: "ຕຸລາ", uv: 3490, pv: 7300, amt: 2100 },
+  { name: "ພະຈິກ", uv: 7490, pv: 4300, amt: 2100 },
+  { name: "ທັນວາ", uv: 3490, pv: 4300, amt: 2100 },
 ];
 
 const LineChart = () => { // เปลี่ยนชื่อฟังก์ชัน
   return (
     <div className="w-full h-[400px]">
-      <h2 className="text-xl font-bold text-center mb-4">รายได้ต่อเดือน</h2>
+      <h2 className="text-xl font-bold text-center mb-4">ລາຍໄດ້ຕໍ່ເດືອນ</h2>
       <ResponsiveContainer width="100%" height="100%">
         <RechartsLineChart
           data={data}
@@ -38,18 +43,18 @@ const LineChart = () => { // เปลี่ยนชื่อฟังก์ช
           <Line
             type="monotone"
             dataKey="uv"
-            stroke="#8884d8"
+            stroke="#FA2222FF"
             strokeWidth={3}
             activeDot={{ r: 8 }}
-            dot={{ fill: "#8884d8", strokeWidth: 2 }}
+            dot={{ fill: "#1000F3FF", strokeWidth: 2 }}
           />
           <Line
             type="monotone"
             dataKey="pv"
-            stroke="#82ca9d"
+            stroke="#01FF62FF"
             strokeWidth={3}
             activeDot={{ r: 8 }}
-            dot={{ fill: "#82ca9d", strokeWidth: 2 }}
+            dot={{ fill: "#F02A07FF", strokeWidth: 2 }}
           />
           <Brush />
         </RechartsLineChart>

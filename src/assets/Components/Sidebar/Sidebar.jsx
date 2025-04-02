@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
-import Logo from "../img/OIP.jpeg";
+import Logo from "../../img/OIP.jpeg";
 import {
   FaDoorOpen,
   FaUserAlt,
@@ -37,6 +37,11 @@ const menuItems = [
     icon: <FaUserAlt size={20} />,
     label: "ຈັດການຜູ້ເຂົ້າໃຊ້",
     path: "/Table",
+  },
+  {
+    icon: <BiLogOut size={24} />,
+    label: "Sign out",
+    path: "/Login",
   },
 ];
 
