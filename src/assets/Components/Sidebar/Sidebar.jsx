@@ -69,7 +69,7 @@ const Sidebar = ({ isOpen, isMobileView }) => {
 
       <div>
         <hr className="my-5 border-white" />
-        <ul className="space-y-2 flex-grow">
+        <ul className="space-y-1 flex-grow">
           {menuItems.map((item, index) => (
             <li key={index}>
               <Link

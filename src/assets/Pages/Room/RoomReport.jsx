@@ -180,14 +180,14 @@ const Check_in = () => {
           placeholder="ຄົ້ນຫາ..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          className="border px-4 py-2 rounded-l-xl flex-grow h-10 border-gray-200"
+          className="border border-gray-400 px-4 py-2 rounded-l-xl flex-grow h-12 "
         />
-        <button className="bg-sky-600 text-white px-4 py-2 rounded-r-xl h-10">
+        <button className="bg-sky-600 text-white px-4 py-2 rounded-r-xl h-12">
           <FiSearch />
         </button>
         <button
           onClick={() => navigate("/formrooms")}
-          className="bg-green-600 text-white px-4 py-2 rounded-xl ml-2 h-10"
+          className="bg-green-600 text-white px-4 py-2 rounded-xl ml-2 h-12"
         >
           + ເພີ່ມ
         </button>

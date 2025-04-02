@@ -29,17 +29,17 @@ const Contracts = () => {
           placeholder="ຄົ້ນຫາ..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          className="border px-4 py-2 rounded-l-xl flex-grow h-10"
+          className="border border-gray-400 px-4 py-2 rounded-l-xl flex-grow h-12"
         />
         <button
           onClick={() => setSearch(search)} // เพิ่มฟังก์ชันให้ปุ่มค้นหา
-          className="bg-sky-600 text-white px-4 py-2 rounded-r-xl h-10"
+          className="bg-sky-600 text-white px-4 py-2 rounded-r-xl h-12"
         >
           <FiSearch />
         </button>
         <button
           onClick={() => navigate("/Formcontracts")}
-          className="bg-green-600 text-white px-4 py-2 rounded-xl ml-2 h-10"
+          className="bg-green-600 text-white px-4 py-2 rounded-xl ml-2 h-12"
         >
           + ເພີ່ມ
         </button>
