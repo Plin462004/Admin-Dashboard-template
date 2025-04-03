@@ -17,7 +17,7 @@ import Formrooms from "./assets/Pages/Room/Formrooms";
 import Formplus from "./assets/Pages/Reservation/Formplus";
 import Formcontracts from "./assets/Pages/Contracts/Formcontracts";
 import Dasboard from "./assets/Dashboard/Dasboard";
-import Login from "./assets/Auth/Login";
+
 
 const App = () => {
   // เพิ่ม state สำหรับตรวจจับขนาดหน้าจอ
@@ -135,7 +135,7 @@ const App = () => {
               <Route path="/formrooms" element={<Formrooms />} />
               <Route path="/Formplus" element={<Formplus />} />
               <Route path="/Formcontracts" element={<Formcontracts />} />
-              <Route path="/Login" element={<Login />} />
+             
             </Routes>
           </div>
         </div>

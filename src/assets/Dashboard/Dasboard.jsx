@@ -7,7 +7,7 @@ import Table from "../Pages/Users/Table";
 
 const Dashboard = () => {
   return (
-    <div className="p-4 bg-gray-200 min-h-screen">
+    <div className="p-4 bg-gray-200 min-h-screen rounded-xl">
       {/* Summary Cards Row */}
       <div className="grid grid-cols-1 gap-1 ">
         <Content />
@@ -30,11 +30,11 @@ const Dashboard = () => {
 
       {/* Bottom Row */}
       <div className="mt-4 bg-white rounded-xl shadow p-4">
-        Chart Line
+        {/* Chart Line */}
         <LineChart />
       </div>
       <div className="mt-4 bg-white rounded-xl shadow p-4">
-        Table User
+        {/* Table User */}
         <Table/>
       </div>
     </div>
