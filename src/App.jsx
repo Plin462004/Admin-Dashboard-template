@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { CssBaseline } from "@mui/material";
+
+// นำเข้าคอมโพเนนต์ต่าง ๆ
 import HeaderBar from "./assets/Components/Header/HeaderBar";
 import Sidebar from "./assets/Components/Sidebar/Sidebar";
 import Room from "./assets/Pages/Room/RoomReport";
@@ -18,66 +20,61 @@ import Formplus from "./assets/Pages/Reservation/Formplus";
 import Formcontracts from "./assets/Pages/Contracts/Formcontracts";
 import Dasboard from "./assets/Dashboard/Dasboard";
 
-
 const App = () => {
-  // เพิ่ม state สำหรับตรวจจับขนาดหน้าจอ
+  // ตรวจจับว่าเป็นหน้าจอขนาดเล็กหรือไม่
   const [isMobileView, setIsMobileView] = useState(false);
-  
-  // ปรับการตั้งค่าเริ่มต้นของ sidebar
+
+  // สถานะของ Sidebar (เปิดหรือปิด)
   const [isSidebarOpen, setIsSidebarOpen] = useState(() => {
-    // เช็คขนาดหน้าจอตอนโหลดครั้งแรก
     const isMobile = window.innerWidth < 768;
-    
-    // ถ้าเป็นหน้าจอมือถือ เริ่มต้นด้วย sidebar ที่ปิด, มิฉะนั้นใช้ค่าจาก localStorage
+    // ถ้าเป็นหน้าจอมือถือ -> sidebar ปิดเสมอ
     if (isMobile) {
       return false;
     } else {
-      return localStorage.getItem("sidebarState") === "true" || 
-             localStorage.getItem("sidebarState") === null; // default to true if not set
+      // ถ้าเป็น desktop -> ใช้ค่าที่เคยเก็บไว้ใน localStorage
+      return (
+        localStorage.getItem("sidebarState") === "true" ||
+        localStorage.getItem("sidebarState") === null // ถ้ายังไม่เคยตั้งค่าเลย ให้เปิดไว้
+      );
     }
   });
 
-  // ตรวจจับการเปลี่ยนแปลงขนาดหน้าจอ
+  // ตรวจจับเมื่อหน้าจอเปลี่ยนขนาด
   useEffect(() => {
     const checkScreenSize = () => {
       const isMobile = window.innerWidth < 768;
       setIsMobileView(isMobile);
-      
-      // ปรับแค่เมื่อเปลี่ยนจากหน้าจอใหญ่เป็นหน้าจอเล็ก
+      // ถ้าจาก desktop เปลี่ยนเป็น mobile ให้ปิด sidebar
       if (isMobile && !isMobileView) {
         setIsSidebarOpen(false);
       }
     };
-    
-    // ตรวจสอบตอนเริ่มต้น
-    checkScreenSize();
-    
-    // ตรวจสอบเมื่อขนาดหน้าจอเปลี่ยน
-    window.addEventListener("resize", checkScreenSize);
-    
-    // Cleanup
-    return () => window.removeEventListener("resize", checkScreenSize);
+
+    checkScreenSize(); // เช็คตอนโหลดครั้งแรก
+    window.addEventListener("resize", checkScreenSize); // เช็คตอนหน้าจอเปลี่ยนขนาด
+
+    return () => window.removeEventListener("resize", checkScreenSize); // ทำความสะอาด event เมื่อ component ถูก unmount
   }, [isMobileView]);
 
-  // เพิ่ม overlay สำหรับ mobile view เมื่อ sidebar เปิด
+  // สำหรับแสดง overlay ทับเมื่อ sidebar เปิดใน mobile
   const [showOverlay, setShowOverlay] = useState(false);
 
   useEffect(() => {
-    // แสดง overlay เมื่อ sidebar เปิดใน mobile view
-    setShowOverlay(isMobileView && isSidebarOpen);
+    setShowOverlay(isMobileView && isSidebarOpen); // แสดง overlay เมื่อเป็นมือถือและ sidebar เปิดอยู่
   }, [isMobileView, isSidebarOpen]);
 
+  // สลับเปิด/ปิด sidebar
   const toggleSidebar = () => {
     const newState = !isSidebarOpen;
     setIsSidebarOpen(newState);
-    
-    // บันทึกสถานะลง localStorage เฉพาะเมื่อไม่ใช่หน้าจอมือถือ
+
+    // บันทึกค่าไว้ใน localStorage เฉพาะใน desktop
     if (!isMobileView) {
       localStorage.setItem("sidebarState", newState);
     }
   };
 
-  // เพิ่มฟังก์ชั่นสำหรับการปิด sidebar เมื่อคลิก overlay
+  // ปิด sidebar เมื่อคลิก overlay (เฉพาะ mobile)
   const closeSidebar = () => {
     if (isMobileView) {
       setIsSidebarOpen(false);
@@ -86,41 +83,48 @@ const App = () => {
 
   return (
     <BrowserRouter>
-      <CssBaseline />
+      <CssBaseline /> {/* ลบ default style ของเบราว์เซอร์ (MUI) */}
       <div className="flex h-screen">
-        {/* Overlay เมื่อ sidebar เปิดใน mobile mode */}
+        
+        {/* Overlay ดำครึ่งจอ เมื่อ sidebar เปิดใน mobile */}
         {showOverlay && (
-          <div 
+          <div
             className="fixed inset-0 bg-black bg-opacity-50 z-40"
             onClick={closeSidebar}
           />
         )}
 
-        {/* Sidebar */}
-        <div 
+        {/* Sidebar ซ้ายมือ */}
+        <div
           className={`fixed h-screen z-50 transition-all duration-300 ${
-            isMobileView 
-              ? `transform ${isSidebarOpen ? "translate-x-0" : "-translate-x-full"} w-72` 
-              : `${isSidebarOpen ? "w-72" : "w-20"}`
+            isMobileView
+              ? `transform ${
+                  isSidebarOpen ? "translate-x-0" : "-translate-x-full"
+                } w-72` // mobile: เลื่อนเข้า/ออกจากจอ
+              : `${isSidebarOpen ? "w-72" : "w-20"}` // desktop: ยืด/ย่อความกว้าง
           }`}
         >
           <Sidebar isOpen={isSidebarOpen} isMobileView={isMobileView} />
         </div>
 
-        {/* Main Content */}
-        <div 
+        {/* Main Content ด้านขวา */}
+        <div
           className={`flex flex-col flex-grow transition-all duration-300 ${
-            isMobileView 
-              ? "w-full" 
-              : `${isSidebarOpen ? "ml-72" : "ml-20"} w-full`
+            isMobileView
+              ? "w-full" // mobile: เต็มจอ
+              : `${isSidebarOpen ? "ml-72" : "ml-20"} w-full` // desktop: ขยับตาม sidebar
           }`}
         >
-          {/* Header */}
-          <HeaderBar toggleSidebar={toggleSidebar} isSidebarOpen={isSidebarOpen} />
+          {/* Header ด้านบน */}
+          <HeaderBar
+            toggleSidebar={toggleSidebar}
+            isSidebarOpen={isSidebarOpen}
+          />
 
-          {/* Page Content */}
+          {/* พื้นที่เนื้อหาหลัก */}
           <div className="p-4 flex-grow overflow-y-auto h-full">
             <Routes>
+              {/* กำหนดเส้นทางของหน้าแต่ละหน้า */}
               <Route path="/" element={<Dasboard />} />
               <Route path="/Room" element={<Room />} />
               <Route path="/Reservation" element={<Reservation />} />
@@ -135,7 +139,6 @@ const App = () => {
               <Route path="/formrooms" element={<Formrooms />} />
               <Route path="/Formplus" element={<Formplus />} />
               <Route path="/Formcontracts" element={<Formcontracts />} />
-             
             </Routes>
           </div>
         </div>

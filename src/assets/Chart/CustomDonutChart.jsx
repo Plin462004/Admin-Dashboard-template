@@ -18,7 +18,7 @@ const renderLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent }) =>
 const CustomDonutChart = () => (
   <div className="flex flex-col items-center">
     <h2 className="text-xl font-semibold mb-4">ການເຄື່ອນໄຫວ ຕ່າງໆ</h2>
-    <PieChart width={300} height={300}>
+    <PieChart width={300} height={320}>
       <Pie data={data} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={50} outerRadius={100} labelLine={false} label={renderLabel}>
         {data.map((entry, index) => <Cell key={index} fill={entry.color} />)}
       </Pie>

@@ -1,56 +1,62 @@
 import React, { useState, useEffect } from "react";
-import { FiSearch, FiEdit, FiTrash2 } from "react-icons/fi";
-import { useNavigate } from "react-router-dom";
-// Import the sample data
-import sampleReservations from "./reservationsData"; // Adjust the path as needed
-
+import { FiSearch, FiEdit, FiTrash2 } from "react-icons/fi"; // ไอคอนสำหรับค้นหา, แก้ไข, ลบ
+import { useNavigate } from "react-router-dom"; // ใช้สำหรับเปลี่ยนหน้า
+import sampleReservations from "./reservationsData"; // mock data สำหรับแสดงข้อมูล
 
 const Table = () => {
-  const [search, setSearch] = useState("");
-  const [reservations, setReservations] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-  const [filter, setFilter] = useState("ທັງໝົດ");
-  const navigate = useNavigate();
+  // สร้าง state สำหรับการจัดการข้อมูล
+  const [search, setSearch] = useState(""); // ค่าค้นหา
+  const [reservations, setReservations] = useState([]); // รายการผู้ใช้งาน
+  const [loading, setLoading] = useState(true); // สถานะการโหลดข้อมูล
+  const [error, setError] = useState(null); // จัดการ error (ยังไม่ใช้)
+  const [filter, setFilter] = useState("ທັງໝົດ"); // ตัวกรอง (All / Admin / User)
+  const navigate = useNavigate(); // ใช้เปลี่ยนหน้า
 
+  // โหลดข้อมูลตอนเริ่ม component
   useEffect(() => {
-    // Use the mock data directly for development
-    setReservations(sampleReservations);
+    setReservations(sampleReservations); // ดึง mock data มาใส่
     setLoading(false);
   }, []);
 
+  // ฟังก์ชันลบผู้ใช้
   const handleDelete = (id) => {
     if (window.confirm("ຢືນຢັນການລຶບ?")) {
       fetch(`/api/reservations/${id}`, { method: "DELETE" })
         .then((res) => res.json())
         .then(() => {
+          // ลบรายการใน state หลังจากลบสำเร็จ
           setReservations(reservations.filter((res) => res.id !== id));
         })
         .catch((error) => console.error("Error deleting reservation:", error));
     }
   };
 
+  // ฟังก์ชันแก้ไข - ไปยังหน้าฟอร์มแก้ไข
   const handleEdit = (id) => {
     navigate(`/edit/${id}`);
   };
 
+  // ตัวกรองข้อมูลตามคำค้นหาและสถานะ
   const filteredReservations = reservations.filter((res) => {
     const matchSearch = res.firstName
       .toLowerCase()
       .includes(search.toLowerCase());
-    
+
     if (filter === "Admin") {
       return matchSearch && res.status === "Admin";
     } else if (filter === "User") {
       return matchSearch && res.status === "User";
     }
-    
+
     return matchSearch;
   });
 
   return (
     <div className="w-full min-h-screen p-4 md:p-6 rounded-lg bg-gray-100">
+      {/* หัวข้อ */}
       <h2 className="text-2xl font-bold mb-4">ຕາຕະລາງຜູ້ໃຊ້</h2>
+
+      {/* ปุ่ม filter tab */}
       <div className="relative">
         <div className="flex gap-2 mb-4 border-b-2 border-gray-300 text-xl relative">
           {["ທັງໝົດ", "Admin", "User"].map((tab) => (
@@ -62,6 +68,7 @@ const Table = () => {
               onClick={() => setFilter(tab)}
             >
               {tab}
+              {/* ขีดใต้ tab ที่ active */}
               {filter === tab && (
                 <div className="absolute bottom-0 left-0 w-full h-1 bg-sky-600"></div>
               )}
@@ -69,6 +76,8 @@ const Table = () => {
           ))}
         </div>
       </div>
+
+      {/* กล่องค้นหา + ปุ่มเพิ่ม */}
       <div className="flex items-center w-full mb-4">
         <input
           type="text"
@@ -88,6 +97,7 @@ const Table = () => {
         </button>
       </div>
 
+      {/* ตารางข้อมูล */}
       <div className="bg-white shadow-md text-xl rounded-lg overflow-x-auto">
         <table className="w-full border-collapse">
           <thead>
@@ -126,6 +136,7 @@ const Table = () => {
                   <td className="px-4 py-3">{res.lastName}</td>
                   <td className="px-4 py-3">{res.phone}</td>
                   <td className="px-4 py-3">
+                    {/* แสดง badge สถานะ Admin หรือ User */}
                     {res.status === "Admin" && (
                       <span className="px-2 py-1 bg-purple-100 text-purple-800 rounded-full text-lg font-medium">
                         Admin
@@ -140,6 +151,7 @@ const Table = () => {
                   <td className="px-4 py-3">{res.email}</td>
                   <td className="px-4 py-3">
                     <div className="flex justify-center gap-2">
+                      {/* ปุ่มแก้ไข */}
                       <button
                         onClick={() => handleEdit(res.id)}
                         className="bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600"
@@ -147,6 +159,8 @@ const Table = () => {
                       >
                         <FiEdit size={16} />
                       </button>
+
+                      {/* ปุ่มลบ */}
                       <button
                         onClick={() => handleDelete(res.id)}
                         className="bg-red-500 text-white p-2 rounded-md hover:bg-red-600"
