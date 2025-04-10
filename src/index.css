@@ -7,3 +7,38 @@
 *{
     font-family: "Noto Sans Lao", serif;
 }
+
+/* CSS สำหรับซ่อน scrollbar ของ Sidebar */
+.hide-scrollbar {
+  overflow-y: auto; /* ให้สามารถเลื่อนได้ */
+  -ms-overflow-style: none; /* สำหรับ IE และ Edge */
+  scrollbar-width: none; /* สำหรับ Firefox */
+}
+
+/* สำหรับ Chrome, Safari และ Opera */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* ... โค้ด CSS อื่นๆ ที่มีอยู่แล้วใน index.css ... */
+
+/* ซ่อน scrollbar สำหรับทุกอุปกรณ์ */
+.hide-scrollbar {
+    -ms-overflow-style: none;  /* สำหรับ Internet Explorer และ Edge */
+    scrollbar-width: none;     /* สำหรับ Firefox */
+  }
+  
+  /* ซ่อน scrollbar สำหรับ Chrome, Safari และ Opera */
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* ทำให้แน่ใจว่า scrollbar ถูกซ่อนใน body และ html */
+  body, html {
+    -ms-overflow-style: none;  /* สำหรับ Internet Explorer และ Edge */
+    scrollbar-width: none;     /* สำหรับ Firefox */
+  }
+  
+  body::-webkit-scrollbar, html::-webkit-scrollbar {
+    display: none;  /* สำหรับ Chrome, Safari และ Opera */
+  }

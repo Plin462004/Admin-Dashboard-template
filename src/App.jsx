@@ -20,6 +20,8 @@ import Formplus from "./assets/Pages/Reservation/Formplus";
 import Formcontracts from "./assets/Pages/Contracts/Formcontracts";
 import Dasboard from "./assets/Dashboard/Dasboard";
 
+// ไม่ต้องนำเข้า CSS เพิ่มเติม เนื่องจากเรากำหนดในไฟล์ index.css แล้ว
+
 const App = () => {
   // ตรวจจับว่าเป็นหน้าจอขนาดเล็กหรือไม่
   const [isMobileView, setIsMobileView] = useState(false);
@@ -84,7 +86,7 @@ const App = () => {
   return (
     <BrowserRouter>
       <CssBaseline /> {/* ลบ default style ของเบราว์เซอร์ (MUI) */}
-      <div className="flex h-screen">
+      <div className="flex h-screen hide-scrollbar">
         
         {/* Overlay ดำครึ่งจอ เมื่อ sidebar เปิดใน mobile */}
         {showOverlay && (
@@ -102,7 +104,7 @@ const App = () => {
                   isSidebarOpen ? "translate-x-0" : "-translate-x-full"
                 } w-72` // mobile: เลื่อนเข้า/ออกจากจอ
               : `${isSidebarOpen ? "w-72" : "w-20"}` // desktop: ยืด/ย่อความกว้าง
-          }`}
+          } overflow-y-auto hide-scrollbar`}
         >
           <Sidebar isOpen={isSidebarOpen} isMobileView={isMobileView} />
         </div>
@@ -122,7 +124,7 @@ const App = () => {
           />
 
           {/* พื้นที่เนื้อหาหลัก */}
-          <div className="p-4 flex-grow overflow-y-auto h-full">
+          <div className="p-4 flex-grow overflow-y-auto h-full hide-scrollbar">
             <Routes>
               {/* กำหนดเส้นทางของหน้าแต่ละหน้า */}
               <Route path="/" element={<Dasboard />} />
